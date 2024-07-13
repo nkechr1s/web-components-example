@@ -28,25 +28,16 @@
     <p>
       Yep, cats are the best!
     </p>
-    <img src="https://as1.ftcdn.net/v2/jpg/08/31/45/38/1000_F_831453861_IivpqSZtmunnQ3oVITgLjsj6DwjjAGK7.jpg">
+    <img class="img-class"
+      src="https://as1.ftcdn.net/v2/jpg/08/31/45/38/1000_F_831453861_IivpqSZtmunnQ3oVITgLjsj6DwjjAGK7.jpg">
   </nk-if>
 
   <nk-if name="animal" value="dog">
     <p>
       Dogs are pretty good, but have you tried cats?
     </p>
-    <img src="https://cdn.britannica.com/84/232784-050-1769B477/Siberian-Husky-dog.jpg">
-
+    <img class="img-class" src="https://cdn.britannica.com/84/232784-050-1769B477/Siberian-Husky-dog.jpg">
   </nk-if>
-
-  <template id="nk-if">
-    <style>
-      :host {
-        display: none;
-      }
-    </style>
-    <slot></slot>
-  </template>
 
   <nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}]'>
     <template>
