@@ -10,7 +10,41 @@
 </head>
 
 <body>
-    <greetings-user name="Nick"></greetings-user>
+    <nk-user name="Nick"></nk-user>
+
+    <h1>What pet is the best?</h1>
+
+<label>
+  <input type="radio" name="animal" value="cat">
+  Cat
+</label>
+
+<label>
+  <input type="radio" name="animal" value="dog">
+  Dog
+</label>    
+
+<nk-if name="animal" value="cat">
+  <p>
+    Yep, cats are the best!
+  </p>
+  <img src="https://as1.ftcdn.net/v2/jpg/08/31/45/38/1000_F_831453861_IivpqSZtmunnQ3oVITgLjsj6DwjjAGK7.jpg">
+</nk-if>
+
+<nk-if name="animal" value="dog">
+  <p>
+    Dogs are pretty good, but have you tried cats?
+  </p>
+</nk-if>
+
+<template id="nk-if">
+  <style>
+    :host {
+      display: none;
+    }
+  </style>
+  <slot></slot>
+</template>
 </body>
 
 </html>

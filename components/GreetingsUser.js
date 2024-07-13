@@ -26,6 +26,6 @@ class GreetingsUser extends HTMLElement {
   }
   
   // register component
-  customElements.define( 'greetings-user', GreetingsUser );
+  customElements.define( 'nk-user', GreetingsUser );
 
   export default GreetingsUser;
