@@ -41,4 +41,5 @@ class IfElement extends HTMLElement {
 }
 
 customElements.define('nk-if', IfElement);
+
 export default IfElement;
