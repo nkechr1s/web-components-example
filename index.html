@@ -2,62 +2,60 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./styles/index.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="./services/index.js"></script>
-    <title>Document</title>
+  <link rel="stylesheet" href="./styles/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="./services/index.js"></script>
+  <title>Document</title>
 </head>
 
 <body>
-    <nk-user class="nk-user-test" name="Hello Nick!"></nk-user> 
+  <nk-user class="nk-user-test" name="Hello Nick!"></nk-user>
 
-    <h1>What pet is the best?</h1>
+  <h1>What pet is the best?</h1>
 
-<label>
-  <input type="radio" name="animal" value="cat">
-  Cat
-</label>
+  <label>
+    <input type="radio" name="animal" value="cat">
+    Cat
+  </label>
 
-<label>
-  <input type="radio" name="animal" value="dog">
-  Dog
-</label>    
+  <label>
+    <input type="radio" name="animal" value="dog">
+    Dog
+  </label>
 
-<nk-if name="animal" value="cat">
-  <p>
-    Yep, cats are the best!
-  </p>
-  <img src="https://as1.ftcdn.net/v2/jpg/08/31/45/38/1000_F_831453861_IivpqSZtmunnQ3oVITgLjsj6DwjjAGK7.jpg">
-</nk-if>
+  <nk-if name="animal" value="cat">
+    <p>
+      Yep, cats are the best!
+    </p>
+    <img src="https://as1.ftcdn.net/v2/jpg/08/31/45/38/1000_F_831453861_IivpqSZtmunnQ3oVITgLjsj6DwjjAGK7.jpg">
+  </nk-if>
 
-<nk-if name="animal" value="dog">
-  <p>
-    Dogs are pretty good, but have you tried cats?
-</p>
+  <nk-if name="animal" value="dog">
+    <p>
+      Dogs are pretty good, but have you tried cats?
+    </p>
     <img src="https://cdn.britannica.com/84/232784-050-1769B477/Siberian-Husky-dog.jpg">
-  
-</nk-if>
 
-<template id="nk-if">
-  <style>
-    :host {
-      display: none;
-    }
-  </style>
-  <slot></slot>
-</template>
+  </nk-if>
 
-
-
-<nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}, {"text": "Item 3"}]' template="nk-for-each-template">
-  <template id="nk-for-each-template">
-    <div>
-      Index: <span data-nk-for-each-index></span><br>
-      Item: <span data-nk-for-each-item></span>
-    </div>
+  <template id="nk-if">
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+    <slot></slot>
   </template>
-</nk-for-each>
+
+  <nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}]' template="item-template">
+    <template id="item-template">
+      <div>
+        Index: {{index}}<br>
+        Item: {{item.text}}
+      </div>
+    </template>
+  </nk-for-each>
 </body>
 
 </html>
