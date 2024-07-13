@@ -47,6 +47,15 @@
   </style>
   <slot></slot>
 </template>
+
+<template id="nk-for-each-template">
+  <div>
+    Index: <span data-nk-for-each-index></span><br>
+    Item: <span data-nk-for-each-item></span>
+  </div>
+</template>
+
+<nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}, {"text": "Item 3"}]' template="nk-for-each-template"></nk-for-each>
 </body>
 
 </html>
