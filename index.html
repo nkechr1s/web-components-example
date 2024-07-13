@@ -10,8 +10,11 @@
 </head>
 
 <body>
+  <!-- nk-user start -->
   <nk-user class="nk-user-test" name="Hello Nick!"></nk-user>
+  <!-- nk-user end -->
 
+  <!-- nk-if start -->
   <h1>What pet is the best?</h1>
 
   <label>
@@ -38,7 +41,9 @@
     </p>
     <img class="img-class" src="https://cdn.britannica.com/84/232784-050-1769B477/Siberian-Husky-dog.jpg">
   </nk-if>
+  <!-- nk-if end -->
 
+  <!-- nk-for-each start -->
   <nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}]'>
     <template>
       <div nk-for-each="item in items">
@@ -46,6 +51,7 @@
       </div>
     </template>
   </nk-for-each>
+  <!-- nk-for-each end -->
 </body>
 
 </html>
