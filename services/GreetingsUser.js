@@ -2,7 +2,7 @@ class GreetingsUser extends HTMLElement {
   
     constructor() {
       super();
-      this.name = 'World';
+      this.name = 'Add user name';
     }
     
     // component attributes
@@ -20,7 +20,7 @@ class GreetingsUser extends HTMLElement {
     
     // connect component
     connectedCallback() {
-      this.textContent = `Hello ${ this.name }!`;
+      this.textContent = `${ this.name }`;
     }
     
   }

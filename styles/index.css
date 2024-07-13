@@ -2,7 +2,7 @@ body {
     font-family: sans-serif;
   }
   
-  nk-user {
+  .nk-user-test {
     font-weight: bold;
     color: red;
   }
