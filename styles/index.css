@@ -1,0 +1,8 @@
+body {
+    font-family: sans-serif;
+  }
+  
+  greetings-user {
+    font-weight: bold;
+    color: red;
+  }
