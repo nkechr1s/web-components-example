@@ -48,11 +48,10 @@
     <slot></slot>
   </template>
 
-  <nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}]' template="item-template">
-    <template id="item-template">
-      <div>
-        Index: {{index}}<br>
-        Item: {{item.text}}
+  <nk-for-each items='[{"text": "Item 1"}, {"text": "Item 2"}]'>
+    <template>
+      <div nk-for-each="item in items">
+        {{ item.text }}
       </div>
     </template>
   </nk-for-each>

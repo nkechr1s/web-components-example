@@ -1,49 +1,73 @@
 class ForEachElement extends HTMLElement {
   static get observedAttributes() {
-    return ['items', 'template'];
+    return ["items"];
   }
 
   constructor() {
     super();
+    this.attachShadow({ mode: "open" });
+    this._items = [];
+  }
 
-    this.attachShadow({ mode: 'open' });
-    const template = document.getElementById(this.getAttribute('template'));
-    this.templateContent = template.innerHTML;
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue) return;
+
+    if (name === "items") {
+      this._items = JSON.parse(newValue || "[]");
+      this.render();
+    }
   }
 
   connectedCallback() {
     this.render();
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
-    this.render();
+  render() {
+    this.shadowRoot.innerHTML = "";
+
+    const template = this.querySelector("template");
+    if (!template) {
+      console.error("Template not found inside <nk-for-each> element.");
+      return;
+    }
+
+    const templateContent = template.innerHTML;
+    const templateFragment = document.createElement("template");
+    templateFragment.innerHTML = templateContent;
+
+    const loopElements =
+      templateFragment.content.querySelectorAll("[nk-for-each]");
+    loopElements.forEach((loopElement) => {
+      const loopExp = loopElement.getAttribute("nk-for-each");
+      const [itemName, itemsName] = loopExp.split(" in ").map((s) => s.trim());
+
+      const items = this._items;
+
+      items.forEach((item, index) => {
+        const clone = document.importNode(loopElement, true);
+        this.bindData(clone, itemName, item);
+        this.shadowRoot.appendChild(clone);
+      });
+    });
   }
 
-  render() {
-    const items = JSON.parse(this.getAttribute('items') || '[]');
-    
-    // Clear previous content
-    this.shadowRoot.innerHTML = '';
-
-    items.forEach((item, index) => {
-      // Create a new instance of the template
-      let instanceHTML = this.templateContent;
-
-      // Replace placeholders with actual values
-      instanceHTML = instanceHTML.replace(/{{index}}/g, index + 1);
-      instanceHTML = instanceHTML.replace(/{{item\.(.*?)}}/g, (_, prop) => item[prop]);
-
-      // Create a new DOM element from the instanceHTML
-      const instance = document.createElement('div');
-      instance.innerHTML = instanceHTML;
-
-      // Append the new element to the shadow DOM
-      this.shadowRoot.appendChild(instance);
-    });
+  bindData(node, itemName, item) {
+    const walker = document.createTreeWalker(
+      node,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+    while (walker.nextNode()) {
+      const textNode = walker.currentNode;
+      textNode.nodeValue = textNode.nodeValue.replace(
+        new RegExp(`{{\\s*${itemName}\\.(\\w+)\\s*}}`, "g"),
+        (_, prop) => item[prop]
+      );
+    }
   }
 }
 
-customElements.define('nk-for-each', ForEachElement);
+customElements.define("nk-for-each", ForEachElement);
 
 export default ForEachElement;
